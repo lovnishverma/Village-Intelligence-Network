@@ -7,7 +7,9 @@ A centralized Public Data Portal designed for comprehensive data collection, cit
 https://www.lovnishverma.in/Village-Intelligence-Network/
 
 **Admin Credientials:**
+
 Username: admin@admin.com
+
 Password: 140001ropar
 
 ## ✨ Features
