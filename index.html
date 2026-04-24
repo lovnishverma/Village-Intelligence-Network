@@ -9,7 +9,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -88,7 +90,8 @@
 
         /* ── LOGIN SCREEN ─────────────────────────────────────────────── */
         #loginScreen {
-            display: none; /* Hidden by default now */
+            display: none;
+            /* Hidden by default now */
             min-height: 100vh;
             align-items: center;
             justify-content: center;
@@ -166,7 +169,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .login-logo .emblem i {
@@ -352,7 +357,8 @@
         }
 
         .user-chip {
-            display: none; /* Hidden by default, shown when logged in */
+            display: none;
+            /* Hidden by default, shown when logged in */
             align-items: center;
             gap: 0.5rem;
             background: var(--surface2);
@@ -384,7 +390,8 @@
         }
 
         .logout-btn {
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
             background: transparent;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -525,8 +532,15 @@
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card::after {
@@ -551,16 +565,41 @@
             opacity: 1;
         }
 
-        .card.alert { border-color: var(--danger-border); }
-        .card.alert:hover { border-color: rgba(255, 59, 59, 0.35); }
-        .card.alert::after { background: linear-gradient(90deg, transparent, var(--danger), transparent); }
-        .card.alert .card-icon-wrapper { border-color: var(--danger-border); }
-        .card.alert .card-icon-wrapper i { color: var(--danger); }
+        .card.alert {
+            border-color: var(--danger-border);
+        }
 
-        .card.monitored { border-color: var(--warn-border); }
-        .card.monitored:hover { border-color: rgba(245, 158, 11, 0.35); }
-        .card.monitored::after { background: linear-gradient(90deg, transparent, var(--warn), transparent); }
-        .card.monitored .card-icon-wrapper i { color: var(--warn); }
+        .card.alert:hover {
+            border-color: rgba(255, 59, 59, 0.35);
+        }
+
+        .card.alert::after {
+            background: linear-gradient(90deg, transparent, var(--danger), transparent);
+        }
+
+        .card.alert .card-icon-wrapper {
+            border-color: var(--danger-border);
+        }
+
+        .card.alert .card-icon-wrapper i {
+            color: var(--danger);
+        }
+
+        .card.monitored {
+            border-color: var(--warn-border);
+        }
+
+        .card.monitored:hover {
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+
+        .card.monitored::after {
+            background: linear-gradient(90deg, transparent, var(--warn), transparent);
+        }
+
+        .card.monitored .card-icon-wrapper i {
+            color: var(--warn);
+        }
 
         .card-icon-wrapper {
             width: 48px;
@@ -682,6 +721,7 @@
             background: var(--warn-bg);
             border: 1px solid var(--warn-border);
         }
+
         .edit-btn:hover {
             background: rgba(245, 158, 11, 0.15);
             border-color: rgba(245, 158, 11, 0.4);
@@ -692,6 +732,7 @@
             background: rgba(16, 185, 129, 0.07);
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
+
         .sheet-btn:hover {
             background: rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.4);
@@ -731,13 +772,34 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            .portal-header { padding: 0 1rem; }
-            .header-left .site-name { display: none; }
-            .portal-hero { padding: 2.5rem 1rem 2rem; }
-            #cardContainer { padding: 0 1rem; }
-            .login-box { padding: 3.5rem 1.5rem 2rem; }
-            .user-chip span { display: none; } /* hide email on small screens */
-            .hide-mobile { display: none; }
+            .portal-header {
+                padding: 0 1rem;
+            }
+
+            .header-left .site-name {
+                display: none;
+            }
+
+            .portal-hero {
+                padding: 2.5rem 1rem 2rem;
+            }
+
+            #cardContainer {
+                padding: 0 1rem;
+            }
+
+            .login-box {
+                padding: 3.5rem 1.5rem 2rem;
+            }
+
+            .user-chip span {
+                display: none;
+            }
+
+            /* hide email on small screens */
+            .hide-mobile {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -765,7 +827,8 @@
                     <label for="loginEmail">Email Address</label>
                     <div class="input-wrap">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="username" required>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="username"
+                            required>
                     </div>
                 </div>
 
@@ -773,7 +836,8 @@
                     <label for="loginPassword">Password</label>
                     <div class="input-wrap">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+                        <input type="password" id="loginPassword" placeholder="Enter your password"
+                            autocomplete="current-password" required>
                     </div>
                 </div>
 
@@ -878,21 +942,21 @@
 
         // ─── FORMS DATA ────────────────────────────────────────────────
         const formsData = [
-            { id: "registration", title: "Registration", desc: "New resident and demographic data entry.", icon: "fa-address-card", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBQGCjiSWoR__9nRLPuBu2Dcqp6uU9q_tcd-pHKMRUAYGocw/viewform", editLink: "https://docs.google.com/forms/d/1osKBPCX9P4nVG4m_nkLa7J9G4aXXLh9A59lzPnMIF9M/edit", sheetLink: null },
-            { id: "village-info", title: "General Village Information", desc: "Geographic and infrastructural metrics.", icon: "fa-city", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfve3FvxCr2IrvoPsEtQ0tU5l0m6PuZodmilyY8IYzcjLiaFg/viewform", editLink: "https://docs.google.com/forms/d/1ZebHKOyeUbT7y-wBxfuXf34jTBoz1oDFqCp3nH7O-uY/edit", sheetLink: null },
-            { id: "business", title: "Important Business Point", desc: "Log commercial hubs and key economic areas.", icon: "fa-store", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSeQys4FRkNLNntUL7iGSm7j0FE9nsxrEBasi8HBpHDJysQteA/viewform", editLink: "https://docs.google.com/forms/d/1aN30-VOCu2j6QnQYQ-HHl0p0Zx7cA2Gq-oM2pQQM36w/edit", sheetLink: "https://docs.google.com/spreadsheets/d/12mafWjHsTtMUUlQuoQAWnz0Ve5IqgTyzxhPmk0LogZc/edit" },
-            { id: "locations", title: "Important Locations", desc: "Important geographical markers and coordinates.", icon: "fa-map-location-dot", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXM0DUa7yJnQ5IJST5cw_bn9KXNVLsUmhz7Sn2RcjIYD35yg/viewform", editLink: "https://docs.google.com/forms/d/1Hrxs9psqGd1O7L9yK9ZfFi7ant9lpZ1dxfdEfs-6IFU/edit", sheetLink: null },
-            { id: "important-person", title: "Important Person", desc: "Community leaders and important individuals.", icon: "fa-user-tie", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSej63CiX7BWQ1uO-TINsWK-UaBFkvXMkKkI5oN8owLmiTxybQ/viewform", editLink: "https://docs.google.com/forms/d/1yIGSCiNv7eraxutn8QvZPA0Kj7V2epe6g82QAyifyPo/edit", sheetLink: null },
-            { id: "suspicious", title: "Suspicious Person", desc: "Report and log unidentified or flagged individuals.", icon: "fa-user-ninja", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdg9d-ylkp_G41JrwlMvXywQllHus6dyuvaHf9_cvQEquYptA/viewform", editLink: "https://docs.google.com/forms/d/1r5CPqaUUbXXWLQuZMjhpx0Nk0LiEj7pHOZfkHnOn_Yo/edit", sheetLink: null },
-            { id: "criminal", title: "Criminal Records", desc: "Access and input law enforcement data.", icon: "fa-handcuffs", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScU2raRgxnvWUv82Q9Io0thm14TIEXB5qLhZ2xgpH_CoUYY6Q/viewform", editLink: "https://docs.google.com/forms/d/1uBnpEzYyuta2WvXXJjPWuLk0EL3NRU4THnXQ-8AavTw/edit", sheetLink: null },
-            { id: "hideouts", title: "Suspected Hideouts", desc: "Log locations flagged for illegal activities.", icon: "fa-house-chimney-crack", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSehJtkhDkjinsdG5M8gwtILvixNvKsP4eYg57c4rs0Ihe62KA/viewform", editLink: "https://docs.google.com/forms/d/1gLu4mxEZx_vgHLlK3uD_X4-k1-Tj7ZzxwmNB6SsNb9Y/edit", sheetLink: null },
-            { id: "verification", title: "Verification / General Info", desc: "Background checks and identity verification.", icon: "fa-clipboard-check", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXmU64fsInK-h0AdTYuIWN9qvreTn_NI6-YwT2fKHpzPHeeA/viewform", editLink: "https://docs.google.com/forms/d/15No_FUpXyPwKmOI086j83CH7X3nU9Y91vQyuWGSyOko/edit", sheetLink: null },
-            { id: "ib-fence", title: "Persons Working Around IB Fence", desc: "Personnel authorized near international borders.", icon: "fa-person-digging", tag: "Monitored", tagIcon: "fa-shield", type: "monitored", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfN_Y7X07J9hvJY1J67f2pCWIhny4SdLZGdrFdcXkKJCK0Qcg/viewform", editLink: "https://docs.google.com/forms/d/1a2mjoxdUoeHzs2JWp-jlqYMuo28Pos9AW9qKBc10uAA/edit", sheetLink: null },
-            { id: "trade", title: "Trade Persons", desc: "Registered merchants and cross-border traders.", icon: "fa-briefcase", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdWTVQQMowApnzXHSxq0jobXg5OLo35NX1Ruv3gmUGmTbUJxw/viewform", editLink: "https://docs.google.com/forms/d/1C90ocSAj014kbtOXuWdhcN-gQnp_PvxSR1CJnDItqW4/edit", sheetLink: null },
-            { id: "vehicle", title: "Vehicle Holders", desc: "Database of registered regional vehicles.", icon: "fa-car", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSetCSA4KNupbWV_VrHh1U3DvZ89__j1RVmKojnaSCHFK2qetw/viewform", editLink: "https://docs.google.com/forms/d/13PeDojYJYnRLDX5Qtied5owB1dHM5yW9hXUTf1s7x6k/edit", sheetLink: null },
-            { id: "govt", title: "Government Servant", desc: "Directory of public officials and employees.", icon: "fa-landmark-flag", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScETCze54UvPiQJgHt97EbuWlbb0EYwqWjJXVGuQ_0WkwqNcA/viewform", editLink: "https://docs.google.com/forms/d/1dAZVbuLeNU6HpXL0114cqWcQrlrcFETu1mZJs3nZ36w/edit", sheetLink: null },
-            { id: "education", title: "Educational Institute", desc: "Schools, colleges, and training centers.", icon: "fa-school", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfYu3u2WJwiBRhpi_1fTJZcAzhQlUb-kSmP2fV_7B0UOA812g/viewform", editLink: "https://docs.google.com/forms/d/1JnSLNV9WLa-c13AirAhd7WI8wr4A5-lG7J37D7EwJX8/edit", sheetLink: null },
-            { id: "clubs", title: "Clubs / Society", desc: "Registered local organizations and groups.", icon: "fa-users-viewfinder", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfy6ZQuHiF2HqugSmy0tUPbR3zo5Wpu0LTeYxH62JTXq90pkg/viewform", editLink: "https://docs.google.com/forms/d/1mp3r0PsrrZdBuXiZG8hn3xpCl6CrZTDJWyr7DtkbZWQ/edit", sheetLink: null }
+            { id: "registration", title: "Registration", desc: "New resident and demographic data entry.", icon: "fa-address-card", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBQGCjiSWoR__9nRLPuBu2Dcqp6uU9q_tcd-pHKMRUAYGocw/viewform", editLink: "https://docs.google.com/forms/d/1osKBPCX9P4nVG4m_nkLa7J9G4aXXLh9A59lzPnMIF9M/edit", sheetLink: "https://docs.google.com/spreadsheets/d/1PotzwGDdI9pUb9g4kfgs-ufd1buH5wEP-FdCmM2TSdA/edit?usp=sharing" },
+            { id: "village-info", title: "General Village Information", desc: "Geographic and infrastructural metrics.", icon: "fa-city", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfve3FvxCr2IrvoPsEtQ0tU5l0m6PuZodmilyY8IYzcjLiaFg/viewform", editLink: "https://docs.google.com/forms/d/1ZebHKOyeUbT7y-wBxfuXf34jTBoz1oDFqCp3nH7O-uY/edit", sheetLink: "https://docs.google.com/spreadsheets/d/1fm01yVLI76_j8i1hLyiU8O86j1U7cOADjYcrg5Ldv8E/edit?usp=sharing" },
+            { id: "business", title: "Important Business Point", desc: "Log commercial hubs and key economic areas.", icon: "fa-store", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSeQys4FRkNLNntUL7iGSm7j0FE9nsxrEBasi8HBpHDJysQteA/viewform", editLink: "https://docs.google.com/forms/d/1aN30-VOCu2j6QnQYQ-HHl0p0Zx7cA2Gq-oM2pQQM36w/edit", sheetLink: "https://docs.google.com/spreadsheets/d/12mafWjHsTtMUUlQuoQAWnz0Ve5IqgTyzxhPmk0LogZc/edit?usp=sharing" },
+            { id: "locations", title: "Important Locations", desc: "Important geographical markers and coordinates.", icon: "fa-map-location-dot", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXM0DUa7yJnQ5IJST5cw_bn9KXNVLsUmhz7Sn2RcjIYD35yg/viewform", editLink: "https://docs.google.com/forms/d/1Hrxs9psqGd1O7L9yK9ZfFi7ant9lpZ1dxfdEfs-6IFU/edit", sheetLink: "https://docs.google.com/spreadsheets/d/1JRF8X8BEBGAKMILxQmVqV3e2dVEoNl_9Gv3EE1Bip98/edit?usp=sharing" },
+            { id: "important-person", title: "Important Person", desc: "Community leaders and important individuals.", icon: "fa-user-tie", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSej63CiX7BWQ1uO-TINsWK-UaBFkvXMkKkI5oN8owLmiTxybQ/viewform", editLink: "https://docs.google.com/forms/d/1yIGSCiNv7eraxutn8QvZPA0Kj7V2epe6g82QAyifyPo/edit", sheetLink: "" },
+            { id: "suspicious", title: "Suspicious Person", desc: "Report and log unidentified or flagged individuals.", icon: "fa-user-ninja", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdg9d-ylkp_G41JrwlMvXywQllHus6dyuvaHf9_cvQEquYptA/viewform", editLink: "https://docs.google.com/forms/d/1r5CPqaUUbXXWLQuZMjhpx0Nk0LiEj7pHOZfkHnOn_Yo/edit", sheetLink: "" },
+            { id: "criminal", title: "Criminal Records", desc: "Access and input law enforcement data.", icon: "fa-handcuffs", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScU2raRgxnvWUv82Q9Io0thm14TIEXB5qLhZ2xgpH_CoUYY6Q/viewform", editLink: "https://docs.google.com/forms/d/1uBnpEzYyuta2WvXXJjPWuLk0EL3NRU4THnXQ-8AavTw/edit", sheetLink: "" },
+            { id: "hideouts", title: "Suspected Hideouts", desc: "Log locations flagged for illegal activities.", icon: "fa-house-chimney-crack", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSehJtkhDkjinsdG5M8gwtILvixNvKsP4eYg57c4rs0Ihe62KA/viewform", editLink: "https://docs.google.com/forms/d/1gLu4mxEZx_vgHLlK3uD_X4-k1-Tj7ZzxwmNB6SsNb9Y/edit", sheetLink: "" },
+            { id: "verification", title: "Verification / General Info", desc: "Background checks and identity verification.", icon: "fa-clipboard-check", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXmU64fsInK-h0AdTYuIWN9qvreTn_NI6-YwT2fKHpzPHeeA/viewform", editLink: "https://docs.google.com/forms/d/15No_FUpXyPwKmOI086j83CH7X3nU9Y91vQyuWGSyOko/edit", sheetLink: "" },
+            { id: "ib-fence", title: "Persons Working Around IB Fence", desc: "Personnel authorized near international borders.", icon: "fa-person-digging", tag: "Monitored", tagIcon: "fa-shield", type: "monitored", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfN_Y7X07J9hvJY1J67f2pCWIhny4SdLZGdrFdcXkKJCK0Qcg/viewform", editLink: "https://docs.google.com/forms/d/1a2mjoxdUoeHzs2JWp-jlqYMuo28Pos9AW9qKBc10uAA/edit", sheetLink: "" },
+            { id: "trade", title: "Trade Persons", desc: "Registered merchants and cross-border traders.", icon: "fa-briefcase", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdWTVQQMowApnzXHSxq0jobXg5OLo35NX1Ruv3gmUGmTbUJxw/viewform", editLink: "https://docs.google.com/forms/d/1C90ocSAj014kbtOXuWdhcN-gQnp_PvxSR1CJnDItqW4/edit", sheetLink: "" },
+            { id: "vehicle", title: "Vehicle Holders", desc: "Database of registered regional vehicles.", icon: "fa-car", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSetCSA4KNupbWV_VrHh1U3DvZ89__j1RVmKojnaSCHFK2qetw/viewform", editLink: "https://docs.google.com/forms/d/13PeDojYJYnRLDX5Qtied5owB1dHM5yW9hXUTf1s7x6k/edit", sheetLink: "" },
+            { id: "govt", title: "Government Servant", desc: "Directory of public officials and employees.", icon: "fa-landmark-flag", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScETCze54UvPiQJgHt97EbuWlbb0EYwqWjJXVGuQ_0WkwqNcA/viewform", editLink: "https://docs.google.com/forms/d/1dAZVbuLeNU6HpXL0114cqWcQrlrcFETu1mZJs3nZ36w/edit", sheetLink: "" },
+            { id: "education", title: "Educational Institute", desc: "Schools, colleges, and training centers.", icon: "fa-school", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfYu3u2WJwiBRhpi_1fTJZcAzhQlUb-kSmP2fV_7B0UOA812g/viewform", editLink: "https://docs.google.com/forms/d/1JnSLNV9WLa-c13AirAhd7WI8wr4A5-lG7J37D7EwJX8/edit", sheetLink: "" },
+            { id: "clubs", title: "Clubs / Society", desc: "Registered local organizations and groups.", icon: "fa-users-viewfinder", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfy6ZQuHiF2HqugSmy0tUPbR3zo5Wpu0LTeYxH62JTXq90pkg/viewform", editLink: "https://docs.google.com/forms/d/1mp3r0PsrrZdBuXiZG8hn3xpCl6CrZTDJWyr7DtkbZWQ/edit", sheetLink: "" }
         ];
 
         // ─── STATE ─────────────────────────────────────────────────────
@@ -986,7 +1050,7 @@
         function updateUIForLoggedInUser() {
             document.getElementById("loginScreen").style.display = "none";
             document.getElementById("portalScreen").style.display = "block";
-            
+
             // Toggle Header Elements
             document.getElementById("showLoginBtn").style.display = "none";
             document.getElementById("userChip").style.display = "flex";
@@ -1007,7 +1071,7 @@
         function updateUIForLoggedOutUser() {
             document.getElementById("loginScreen").style.display = "none";
             document.getElementById("portalScreen").style.display = "block";
-            
+
             // Toggle Header Elements
             document.getElementById("showLoginBtn").style.display = "flex";
             document.getElementById("userChip").style.display = "none";
@@ -1075,4 +1139,5 @@
         }
     </script>
 </body>
+
 </html>
