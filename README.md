@@ -1,12 +1,13 @@
 # Village Intelligence Network (VIN) 🛡️
 
-A secure, centralized Government Access Portal designed for comprehensive data collection, citizen registration, and local record management. This platform acts as a secure hub connecting authorized personnel to a wide array of standardized and restricted intelligence forms.
+A centralized Public Data Portal designed for comprehensive data collection, citizen registration, and local record management. This platform acts as a secure hub connecting the public to standard forms, while providing a secure login gateway for authorized administrators to access backend data and restricted administrative functions.
 
 ## ✨ Features
 
-* **🔐 Secure Authentication:** Firebase-powered email and password authentication to ensure only authorized personnel can access the portal.
-* **🛡️ Role-Based Access Control (RBAC):** Distinct views for standard users and Administrators. Admins have exclusive access to edit forms and view backend data spreadsheets.
-* **🌗 Persistent Theme Engine:** Built-in Dark and Light mode toggle. User preferences are automatically saved in local storage.
+* **🌍 Public-First Access:** Standard portal views and form links are accessible to the public by default, improving community engagement and ease of reporting.
+* **🔐 Secure Admin Gateway:** Firebase-powered email and password authentication to protect administrative functions (such as editing forms or viewing backend data sheets).
+* **🛡️ Role-Based Access Control (RBAC):** Distinct UI states for public users and Administrators. Admins receive exclusive action buttons seamlessly integrated into the dashboard upon login.
+* **🌗 Persistent Theme Engine:** Built-in Dark and Light mode toggle. User preferences are automatically saved in the browser's local storage.
 * **🔍 Instant Search & Filtering:** Live search functionality to instantly filter through various intelligence and data forms.
 * **📑 Categorized Intelligence Hub:** Forms are visually categorized into Standard, Monitored, and Restricted (Alert) items for quick situational awareness.
 * **📱 Fully Responsive UI:** Modern, animated, grid-based design optimized for desktops, tablets, and mobile devices.
@@ -62,7 +63,7 @@ const firebaseConfig = {
 
 ## 👑 Setting up an Admin User
 
-To grant a user Admin privileges (which allows them to see the "Edit Form" and "View Sheet" buttons):
+To grant a user Admin privileges (which allows them to access the protected login screen and see the "Edit Form" and "View Sheet" buttons):
 
 1. Ensure the user has signed up/logged in at least once via Firebase Auth.
 2. Go to your Firebase Realtime Database.
@@ -96,4 +97,3 @@ Feel free to check the issues page if you want to contribute.
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
