@@ -2,6 +2,14 @@
 
 A centralized Public Data Portal designed for comprehensive data collection, citizen registration, and local record management. This platform acts as a secure hub connecting the public to standard forms, while providing a secure login gateway for authorized administrators to access backend data and restricted administrative functions.
 
+## Live Demo: 
+
+https://www.lovnishverma.in/Village-Intelligence-Network/
+
+**Admin Credientials:**
+Username: admin@admin.com
+Password: 140001ropar
+
 ## ✨ Features
 
 * **🌍 Public-First Access:** Standard portal views and form links are accessible to the public by default, improving community engagement and ease of reporting.
