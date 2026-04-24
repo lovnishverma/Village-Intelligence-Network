@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Intelligence Network | Secure Portal</title>
+    <meta name="description" content="Secure data portal for the Village Intelligence Network.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ── THEME VARIABLES ────────────────────────────────────────────── */
+        :root {
+            /* Dark Theme Defaults */
+            --bg: #060a14;
+            --surface: #0c1220;
+            --surface2: #111827;
+            --border: rgba(255, 255, 255, 0.07);
+            --accent: #00d4ff;
+            --accent-hover: #00bfff;
+            --accent2: #0088cc;
+            --danger: #ff3b3b;
+            --danger-bg: rgba(255, 59, 59, 0.08);
+            --danger-border: rgba(255, 59, 59, 0.2);
+            --warn: #f59e0b;
+            --warn-bg: rgba(245, 158, 11, 0.08);
+            --warn-border: rgba(245, 158, 11, 0.2);
+            --green: #10b981;
+            --text: #e8f0fe;
+            --muted: #6b7a99;
+            --shadow: 0 0 40px rgba(0, 212, 255, 0.08);
+            --grid-line: rgba(0, 212, 255, 0.015);
+            --radial-glow: rgba(0, 136, 204, 0.12);
+            --input-bg: var(--bg);
+            --btn-text: #000;
+            --emblem-bg: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 136, 204, 0.05));
+        }
+
+        [data-theme="light"] {
+            /* Light Theme Overrides */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface2: #f1f5f9;
+            --border: rgba(0, 0, 0, 0.1);
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --accent2: #0ea5e9;
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.08);
+            --danger-border: rgba(239, 68, 68, 0.2);
+            --warn: #d97706;
+            --warn-bg: rgba(217, 119, 6, 0.08);
+            --warn-border: rgba(217, 119, 6, 0.2);
+            --green: #059669;
+            --text: #0f172a;
+            --muted: #64748b;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            --grid-line: rgba(2, 132, 199, 0.03);
+            --radial-glow: rgba(2, 132, 199, 0.05);
+            --input-bg: #ffffff;
+            --btn-text: #ffffff;
+            --emblem-bg: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(3, 105, 161, 0.05));
+        }
+
+        /* ── GLOBAL RESET & BODY ────────────────────────────────────────── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, var(--radial-glow), transparent),
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 100% 100%, 44px 44px, 44px 44px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ── LOGIN SCREEN ─────────────────────────────────────────────── */
+        #loginScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .login-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow), 0 0 0 1px rgba(0, 212, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .login-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-logo .emblem {
+            width: 64px;
+            height: 64px;
+            background: var(--emblem-bg);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            position: relative;
+        }
+
+        .login-logo .emblem::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px dashed rgba(0, 212, 255, 0.2);
+            animation: spin 12s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .login-logo .emblem i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .login-logo h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text);
+        }
+
+        .login-logo p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .field-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .field-group .input-wrap {
+            position: relative;
+        }
+
+        .field-group .input-wrap i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .field-group input {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.75rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .field-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
+        }
+
+        .login-error {
+            display: none;
+            background: var(--danger-bg);
+            border: 1px solid var(--danger-border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            color: var(--danger);
+            margin-bottom: 1.25rem;
+        }
+
+        #loginBtn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            border: none;
+            border-radius: 10px;
+            color: var(--btn-text);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        #loginBtn:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
+        }
+
+        #loginBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* ── PORTAL SCREEN ────────────────────────────────────────────── */
+        #portalScreen {
+            display: none;
+        }
+
+        /* Header */
+        .portal-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-left i.logo-icon {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .header-left .site-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--text);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--muted);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.82rem;
+            color: var(--text);
+        }
+
+        .user-chip i {
+            color: var(--muted);
+            font-size: 0.75rem;
+        }
+
+        .admin-badge {
+            display: none;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--muted);
+            padding: 0.4rem 0.9rem;
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        /* Hero */
+        .portal-hero {
+            text-align: center;
+            padding: 3.5rem 1.5rem 2.5rem;
+        }
+
+        .portal-hero .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 999px;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .portal-hero h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .portal-hero p {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Search */
+        .search-wrap {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-wrap input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .search-wrap input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        /* Card Grid */
+        #cardContainer {
+            max-width: 1280px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* Card */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 212, 255, 0.1);
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card.alert { border-color: var(--danger-border); }
+        .card.alert:hover { border-color: rgba(255, 59, 59, 0.35); }
+        .card.alert::after { background: linear-gradient(90deg, transparent, var(--danger), transparent); }
+        .card.alert .card-icon-wrapper { border-color: var(--danger-border); }
+        .card.alert .card-icon-wrapper i { color: var(--danger); }
+
+        .card.monitored { border-color: var(--warn-border); }
+        .card.monitored:hover { border-color: rgba(245, 158, 11, 0.35); }
+        .card.monitored::after { background: linear-gradient(90deg, transparent, var(--warn), transparent); }
+        .card.monitored .card-icon-wrapper i { color: var(--warn); }
+
+        .card-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(128, 128, 128, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .card-icon-wrapper i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+
+        .card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.45rem;
+            color: var(--text);
+        }
+
+        .card>p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: rgba(128, 128, 128, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.25rem 0.6rem;
+        }
+
+        .card.alert .card-tag {
+            color: var(--danger);
+            background: var(--danger-bg);
+            border-color: var(--danger-border);
+        }
+
+        .card.monitored .card-tag {
+            color: var(--warn);
+            background: var(--warn-bg);
+            border-color: var(--warn-border);
+        }
+
+        .open-form-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 6px;
+            background: rgba(0, 212, 255, 0.06);
+            transition: all 0.2s;
+        }
+
+        .open-form-btn:hover {
+            background: rgba(0, 212, 255, 0.14);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        /* Admin Links */
+        .admin-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            letter-spacing: 0.03em;
+        }
+
+        .edit-btn {
+            color: var(--warn);
+            background: var(--warn-bg);
+            border: 1px solid var(--warn-border);
+        }
+        .edit-btn:hover {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .sheet-btn {
+            color: var(--green);
+            background: rgba(16, 185, 129, 0.07);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .sheet-btn:hover {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* No Results */
+        .no-results {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--muted);
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+        }
+
+        .no-results h2 {
+            font-family: 'Rajdhani', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .portal-header { padding: 0 1rem; }
+            .header-left .site-name { display: none; }
+            .portal-hero { padding: 2.5rem 1rem 2rem; }
+            #cardContainer { padding: 0 1rem; }
+            .login-box { padding: 2rem 1.5rem; }
+            .user-chip span { display: none; } /* hide email on small screens */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── LOGIN SCREEN ───────────────────────────────────────────── -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">
+                <div class="emblem">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h1>Village Intelligence Network</h1>
+                <p>Secure Government Access Portal</p>
+            </div>
+
+            <div id="loginError" class="login-error"></div>
+
+            <form id="loginForm">
+                <div class="field-group">
+                    <label for="loginEmail">Email Address</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="username" required>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="loginBtn">
+                    <i class="fa-solid fa-right-to-bracket"></i> Access Portal
+                </button>
+            </form>
+
+            <p class="login-note">
+                <i class="fa-solid fa-circle-info"></i>
+                Authorised personnel only. All access is logged.
+            </p>
+        </div>
+    </div>
+
+    <!-- ─── PORTAL SCREEN ──────────────────────────────────────────── -->
+    <div id="portalScreen">
+        <header class="portal-header">
+            <div class="header-left">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                <span class="site-name">Village Intelligence Network</span>
+            </div>
+            <div class="header-right">
+                <button id="themeToggleBtn" class="icon-btn" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                <span class="admin-badge" id="adminBadge">
+                    <i class="fa-solid fa-star"></i> Admin
+                </span>
+                <div class="user-chip" title="Current User">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span id="userDisplay">—</span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </header>
+
+        <section class="portal-hero">
+            <div class="tag-pill">
+                <i class="fa-solid fa-shield-halved"></i> Govt. Access Only
+            </div>
+            <h1>Secure Data Portal</h1>
+            <p>Centralised portal for data collection, citizen registration, and record management.</p>
+            <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search forms…" aria-label="Search forms">
+            </div>
+        </section>
+
+        <main id="cardContainer"></main>
+
+        <footer>
+            <p>© 2026 Village Intelligence Network &nbsp;|&nbsp; Secure Data Portal &nbsp;|&nbsp; All access is logged and monitored</p>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK & Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        // ─── FIREBASE CONFIGURATION (from Google Services JSON) ─────────
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4f4zNMIpQS6a68N3RRevh1V3zb9mPf9E",
+            authDomain: "mysticstudent-d7dcb.firebaseapp.com",
+            databaseURL: "https://mysticstudent-d7dcb.firebaseio.com",
+            projectId: "mysticstudent-d7dcb",
+            storageBucket: "mysticstudent-d7dcb.firebasestorage.app",
+            messagingSenderId: "272455943893",
+            appId: "1:272455943893:web:0000000000000000000000" // Fallback ID pattern needed by SDK for web initialization
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        // ─── THEME MANAGER ─────────────────────────────────────────────
+        const htmlDoc = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function applyTheme(theme) {
+            htmlDoc.setAttribute('data-theme', theme);
+            localStorage.setItem('vin_portal_theme', theme);
+            themeIcon.className = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        }
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('vin_portal_theme') || 'dark';
+        applyTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlDoc.getAttribute('data-theme');
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+
+        // ─── FORMS DATA ────────────────────────────────────────────────
+        const formsData = [
+            { id: "registration", title: "Registration", desc: "New resident and demographic data entry.", icon: "fa-address-card", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdBQGCjiSWoR__9nRLPuBu2Dcqp6uU9q_tcd-pHKMRUAYGocw/viewform", editLink: "https://docs.google.com/forms/d/1osKBPCX9P4nVG4m_nkLa7J9G4aXXLh9A59lzPnMIF9M/edit", sheetLink: null },
+            { id: "village-info", title: "General Village Information", desc: "Geographic and infrastructural metrics.", icon: "fa-city", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfve3FvxCr2IrvoPsEtQ0tU5l0m6PuZodmilyY8IYzcjLiaFg/viewform", editLink: "https://docs.google.com/forms/d/1ZebHKOyeUbT7y-wBxfuXf34jTBoz1oDFqCp3nH7O-uY/edit", sheetLink: null },
+            { id: "business", title: "Important Business Point", desc: "Log commercial hubs and key economic areas.", icon: "fa-store", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSeQys4FRkNLNntUL7iGSm7j0FE9nsxrEBasi8HBpHDJysQteA/viewform", editLink: "https://docs.google.com/forms/d/1aN30-VOCu2j6QnQYQ-HHl0p0Zx7cA2Gq-oM2pQQM36w/edit", sheetLink: "https://docs.google.com/spreadsheets/d/12mafWjHsTtMUUlQuoQAWnz0Ve5IqgTyzxhPmk0LogZc/edit" },
+            { id: "locations", title: "Important Locations", desc: "Important geographical markers and coordinates.", icon: "fa-map-location-dot", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXM0DUa7yJnQ5IJST5cw_bn9KXNVLsUmhz7Sn2RcjIYD35yg/viewform", editLink: "https://docs.google.com/forms/d/1Hrxs9psqGd1O7L9yK9ZfFi7ant9lpZ1dxfdEfs-6IFU/edit", sheetLink: null },
+            { id: "important-person", title: "Important Person", desc: "Community leaders and important individuals.", icon: "fa-user-tie", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSej63CiX7BWQ1uO-TINsWK-UaBFkvXMkKkI5oN8owLmiTxybQ/viewform", editLink: "https://docs.google.com/forms/d/1yIGSCiNv7eraxutn8QvZPA0Kj7V2epe6g82QAyifyPo/edit", sheetLink: null },
+            { id: "suspicious", title: "Suspicious Person", desc: "Report and log unidentified or flagged individuals.", icon: "fa-user-ninja", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdg9d-ylkp_G41JrwlMvXywQllHus6dyuvaHf9_cvQEquYptA/viewform", editLink: "https://docs.google.com/forms/d/1r5CPqaUUbXXWLQuZMjhpx0Nk0LiEj7pHOZfkHnOn_Yo/edit", sheetLink: null },
+            { id: "criminal", title: "Criminal Records", desc: "Access and input law enforcement data.", icon: "fa-handcuffs", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScU2raRgxnvWUv82Q9Io0thm14TIEXB5qLhZ2xgpH_CoUYY6Q/viewform", editLink: "https://docs.google.com/forms/d/1uBnpEzYyuta2WvXXJjPWuLk0EL3NRU4THnXQ-8AavTw/edit", sheetLink: null },
+            { id: "hideouts", title: "Suspected Hideouts", desc: "Log locations flagged for illegal activities.", icon: "fa-house-chimney-crack", tag: "Restricted", tagIcon: "fa-lock", type: "alert", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSehJtkhDkjinsdG5M8gwtILvixNvKsP4eYg57c4rs0Ihe62KA/viewform", editLink: "https://docs.google.com/forms/d/1gLu4mxEZx_vgHLlK3uD_X4-k1-Tj7ZzxwmNB6SsNb9Y/edit", sheetLink: null },
+            { id: "verification", title: "Verification / General Info", desc: "Background checks and identity verification.", icon: "fa-clipboard-check", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScXmU64fsInK-h0AdTYuIWN9qvreTn_NI6-YwT2fKHpzPHeeA/viewform", editLink: "https://docs.google.com/forms/d/15No_FUpXyPwKmOI086j83CH7X3nU9Y91vQyuWGSyOko/edit", sheetLink: null },
+            { id: "ib-fence", title: "Persons Working Around IB Fence", desc: "Personnel authorized near international borders.", icon: "fa-person-digging", tag: "Monitored", tagIcon: "fa-shield", type: "monitored", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfN_Y7X07J9hvJY1J67f2pCWIhny4SdLZGdrFdcXkKJCK0Qcg/viewform", editLink: "https://docs.google.com/forms/d/1a2mjoxdUoeHzs2JWp-jlqYMuo28Pos9AW9qKBc10uAA/edit", sheetLink: null },
+            { id: "trade", title: "Trade Persons", desc: "Registered merchants and cross-border traders.", icon: "fa-briefcase", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSdWTVQQMowApnzXHSxq0jobXg5OLo35NX1Ruv3gmUGmTbUJxw/viewform", editLink: "https://docs.google.com/forms/d/1C90ocSAj014kbtOXuWdhcN-gQnp_PvxSR1CJnDItqW4/edit", sheetLink: null },
+            { id: "vehicle", title: "Vehicle Holders", desc: "Database of registered regional vehicles.", icon: "fa-car", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSetCSA4KNupbWV_VrHh1U3DvZ89__j1RVmKojnaSCHFK2qetw/viewform", editLink: "https://docs.google.com/forms/d/13PeDojYJYnRLDX5Qtied5owB1dHM5yW9hXUTf1s7x6k/edit", sheetLink: null },
+            { id: "govt", title: "Government Servant", desc: "Directory of public officials and employees.", icon: "fa-landmark-flag", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLScETCze54UvPiQJgHt97EbuWlbb0EYwqWjJXVGuQ_0WkwqNcA/viewform", editLink: "https://docs.google.com/forms/d/1dAZVbuLeNU6HpXL0114cqWcQrlrcFETu1mZJs3nZ36w/edit", sheetLink: null },
+            { id: "education", title: "Educational Institute", desc: "Schools, colleges, and training centers.", icon: "fa-school", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfYu3u2WJwiBRhpi_1fTJZcAzhQlUb-kSmP2fV_7B0UOA812g/viewform", editLink: "https://docs.google.com/forms/d/1JnSLNV9WLa-c13AirAhd7WI8wr4A5-lG7J37D7EwJX8/edit", sheetLink: null },
+            { id: "clubs", title: "Clubs / Society", desc: "Registered local organizations and groups.", icon: "fa-users-viewfinder", tag: "Standard", tagIcon: "fa-circle-check", type: "standard", userLink: "https://docs.google.com/forms/d/e/1FAIpQLSfy6ZQuHiF2HqugSmy0tUPbR3zo5Wpu0LTeYxH62JTXq90pkg/viewform", editLink: "https://docs.google.com/forms/d/1mp3r0PsrrZdBuXiZG8hn3xpCl6CrZTDJWyr7DtkbZWQ/edit", sheetLink: null }
+        ];
+
+        // ─── STATE ─────────────────────────────────────────────────────
+        let currentUser = null;
+        let isAdmin = false;
+
+        // ─── AUTH STATE LISTENER ───────────────────────────────────────
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                try {
+                    const snap = await get(ref(db, `users/${user.uid}/role`));
+                    isAdmin = snap.exists() && snap.val() === "admin";
+                } catch (e) {
+                    try {
+                        const snap2 = await get(ref(db, `users/${user.uid}/username`));
+                        isAdmin = snap2.exists() && snap2.val() === "admin";
+                    } catch (e2) {
+                        isAdmin = false;
+                    }
+                }
+                showPortal();
+            } else {
+                currentUser = null;
+                isAdmin = false;
+                showLogin();
+            }
+        });
+
+        // ─── DOM ELEMENTS & EVENT LISTENERS ────────────────────────────
+        const loginForm = document.getElementById("loginForm");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const searchInput = document.getElementById("searchInput");
+
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+            const errorEl = document.getElementById("loginError");
+            const btn = document.getElementById("loginBtn");
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+            errorEl.style.display = "none";
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // onAuthStateChanged handles routing to portal
+            } catch (err) {
+                let msg = "Authentication failed.";
+                if (err.code === "auth/user-not-found" || err.code === "auth/wrong-password" || err.code === "auth/invalid-credential") {
+                    msg = "Invalid credentials. Access denied.";
+                } else if (err.code === "auth/too-many-requests") {
+                    msg = "Too many attempts. Try again later.";
+                } else if (err.code === "auth/network-request-failed") {
+                    msg = "Network error. Check connection.";
+                }
+                errorEl.textContent = msg;
+                errorEl.style.display = "block";
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Access Portal';
+            }
+        });
+
+        logoutBtn.addEventListener("click", async () => {
+            await signOut(auth);
+        });
+
+        searchInput.addEventListener("input", (e) => {
+            renderCards(e.target.value.toLowerCase().trim());
+        });
+
+        // ─── RENDER PORTAL ─────────────────────────────────────────────
+        function showPortal() {
+            document.getElementById("loginScreen").style.display = "none";
+            document.getElementById("portalScreen").style.display = "block";
+            
+            // Clean up Login Box state if returning
+            document.getElementById("loginBtn").disabled = false;
+            document.getElementById("loginBtn").innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Access Portal';
+
+            const emailDisplay = currentUser.email.split("@")[0];
+            document.getElementById("userDisplay").textContent = emailDisplay;
+            document.getElementById("adminBadge").style.display = isAdmin ? "inline-flex" : "none";
+
+            renderCards();
+        }
+
+        function showLogin() {
+            document.getElementById("loginScreen").style.display = "flex";
+            document.getElementById("portalScreen").style.display = "none";
+            document.getElementById("loginForm").reset();
+        }
+
+        function renderCards(filter = "") {
+            const container = document.getElementById("cardContainer");
+            container.innerHTML = "";
+
+            const filtered = formsData.filter(f =>
+                f.title.toLowerCase().includes(filter) ||
+                f.desc.toLowerCase().includes(filter) ||
+                f.tag.toLowerCase().includes(filter)
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <h2>No forms found</h2>
+                        <p>Try adjusting your search criteria.</p>
+                    </div>`;
+                return;
+            }
+
+            filtered.forEach((form, i) => {
+                const card = document.createElement("div");
+                card.className = `card ${form.type === "alert" ? "alert" : form.type === "monitored" ? "monitored" : ""}`;
+                card.style.animationDelay = `${i * 0.045}s`;
+
+                const adminLinks = isAdmin ? `
+                    <div class="admin-links">
+                        <a href="${form.editLink}" target="_blank" class="admin-btn edit-btn" title="Edit Form">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Form
+                        </a>
+                        ${form.sheetLink ? `<a href="${form.sheetLink}" target="_blank" class="admin-btn sheet-btn" title="View Sheet">
+                            <i class="fa-solid fa-table"></i> View Sheet
+                        </a>` : ""}
+                    </div>` : "";
+
+                card.innerHTML = `
+                    <div class="card-icon-wrapper">
+                        <i class="fa-solid ${form.icon}"></i>
+                    </div>
+                    <h3>${form.title}</h3>
+                    <p>${form.desc}</p>
+                    <div class="card-footer-row">
+                        <span class="card-tag">
+                            <i class="fa-solid ${form.tagIcon}"></i> ${form.tag}
+                        </span>
+                        <a href="${form.userLink}" target="_blank" class="open-form-btn">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Form
+                        </a>
+                    </div>
+                    ${adminLinks}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
